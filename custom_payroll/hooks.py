@@ -15,7 +15,7 @@ doctype_js = {
 
 doc_events = {
     "Salary Slip": {
-        "validate": "custom_payroll.salary_slip_override.apply_weekday_working_days"
+        "validate": "custom_payroll.salary_slip_override.apply_working_days_only"
     }
 }
 # Each item in the list will be shown as an app in the apps page

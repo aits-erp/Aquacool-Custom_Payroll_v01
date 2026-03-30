@@ -1,15 +1,13 @@
-from custom_payroll.api import get_weekday_working_days
+from custom_payroll.api import get_working_days_sunday_only
 
 
-def apply_weekday_working_days(doc, method=None):
-    result = get_weekday_working_days(
-        employee=doc.employee,
-        company=doc.company,
+def apply_working_days_only(doc, method=None):
+    if not doc.start_date or not doc.end_date:
+        return
+
+    result = get_working_days_sunday_only(
         start_date=doc.start_date,
-        end_date=doc.end_date,
-        leave_without_pay=doc.leave_without_pay,
-        absent_days=doc.absent_days
+        end_date=doc.end_date
     )
 
     doc.total_working_days = result.get("total_working_days", 0)
-    doc.payment_days = result.get("payment_days", 0)
